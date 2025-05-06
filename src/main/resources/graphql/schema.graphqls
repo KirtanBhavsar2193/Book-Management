@@ -23,5 +23,5 @@ input BookInput {
 }
 
 type Mutation {
-    addBook(book: BookInput): Book
+    addBook(bookInput: BookInput): Book!
 }
