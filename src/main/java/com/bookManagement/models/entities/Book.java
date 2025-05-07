@@ -1,4 +1,4 @@
-package com.bookManagement.entities;
+package com.bookManagement.models.entities;
 
 import jakarta.persistence.*;
 

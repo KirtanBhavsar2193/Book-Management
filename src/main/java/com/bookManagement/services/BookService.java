@@ -1,6 +1,6 @@
 package com.bookManagement.services;
 
-import com.bookManagement.entities.Book;
+import com.bookManagement.models.entities.Book;
 import com.bookManagement.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

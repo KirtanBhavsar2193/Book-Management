@@ -1,6 +1,8 @@
 package com.bookManagement.controllers;
 
-import com.bookManagement.entities.Book;
+import com.bookManagement.mappers.BookMapper;
+import com.bookManagement.models.entities.Book;
+import com.bookManagement.models.BookInput;
 import com.bookManagement.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -17,15 +19,20 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private BookMapper bookMapper;
+
     @MutationMapping("addBook")
     public Book addBook(@Argument BookInput bookInput) {
-        Book book = new Book();
+
+        Book book = bookMapper.bookInputToBook(bookInput);
+        /*Book book = new Book();
         book.setBookName(bookInput.getBookName());
         book.setAuthor(bookInput.getAuthor());
         book.setPrice(bookInput.getPrice());
         book.setBookDescription(bookInput.getBookDescription());
         book.setPages(bookInput.getPages());
-        book.setPublisher(bookInput.getPublisher());
+        book.setPublisher(bookInput.getPublisher());*/
         return bookService.addBook(book);
     }
 
@@ -42,59 +49,4 @@ public class BookController {
 
 
 
-class BookInput {
-    private String bookName;
-    private String author;
-    private String publisher;
-    private double price;
-    private String bookDescription;
-    private int pages;
 
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getBookDescription() {
-        return bookDescription;
-    }
-
-    public void setBookDescription(String bookDescription) {
-        this.bookDescription = bookDescription;
-    }
-
-    public int getPages() {
-        return pages;
-    }
-
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
-}
