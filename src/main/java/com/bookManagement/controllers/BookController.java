@@ -26,13 +26,6 @@ public class BookController {
     public Book addBook(@Argument BookInput bookInput) {
 
         Book book = bookMapper.bookInputToBook(bookInput);
-        /*Book book = new Book();
-        book.setBookName(bookInput.getBookName());
-        book.setAuthor(bookInput.getAuthor());
-        book.setPrice(bookInput.getPrice());
-        book.setBookDescription(bookInput.getBookDescription());
-        book.setPages(bookInput.getPages());
-        book.setPublisher(bookInput.getPublisher());*/
         return bookService.addBook(book);
     }
 
@@ -46,7 +39,3 @@ public class BookController {
         return bookService.getBookById(bookId);
     }
 }
-
-
-
-

@@ -1,12 +1,26 @@
 package com.bookManagement.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class BookInput {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private int bookId;
     private String bookName;
     private String author;
     private String publisher;
     private double price;
     private String bookDescription;
     private int pages;
+
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 
     public String getBookName() {
         return bookName;
