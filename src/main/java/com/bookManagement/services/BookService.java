@@ -1,5 +1,6 @@
 package com.bookManagement.services;
 
+import com.bookManagement.exceptions.DataNotFoundException;
 import com.bookManagement.models.entities.Book;
 import com.bookManagement.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
