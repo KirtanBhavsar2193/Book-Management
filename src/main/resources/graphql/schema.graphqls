@@ -24,4 +24,6 @@ input BookInput {
 
 type Mutation {
     addBook(bookInput: BookInput): Book!
+    editBook(bookId: ID!, bookInput: BookInput): Book!
+    removeBook(bookId: ID!): String!
 }

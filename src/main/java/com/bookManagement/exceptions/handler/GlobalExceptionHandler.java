@@ -1,27 +1,31 @@
 package com.bookManagement.exceptions.handler;
 
 import com.bookManagement.exceptions.DataNotFoundException;
-import com.bookManagement.models.errors.ErrorRespons;
-import com.bookManagement.models.errors.ErrorType;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import graphql.GraphQLError;
+import org.springframework.graphql.data.method.annotation.GraphQlExceptionHandler;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
-@RestControllerAdvice(basePackages = "com.example.shoppingCart")
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(DataNotFoundException.class)
-    public ErrorRespons handlerDataNotFoundException(DataNotFoundException ex) {
-        ErrorRespons errorResponse = new ErrorRespons(ex.getMessage(), ErrorType.MISSING_DATA);
-
-        return errorResponse;
+    @GraphQlExceptionHandler
+    public GraphQLError handlerDataNotFoundException(DataNotFoundException ex) {
+        return GraphQLError.newError()
+                .message(ex.getMessage())
+                .build();
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorRespons> handlerGlobalException(Exception ex) {
-        ErrorRespons errorResponse = new ErrorRespons("An Unexpected Error Occurred", ErrorType.INTERNAL_ERROR);
+    @GraphQlExceptionHandler
+    public GraphQLError handlerGlobalException(Exception ex) {
+        return GraphQLError.newError()
+                .message(ex.getMessage())
+                .build();
+    }
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    @GraphQlExceptionHandler
+    public GraphQLError handlerRunTimeException(RuntimeException ex) {
+        return GraphQLError.newError()
+               .message(ex.getMessage())
+               .build();
     }
 }

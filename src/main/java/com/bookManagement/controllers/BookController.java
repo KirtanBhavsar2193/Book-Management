@@ -19,14 +19,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private BookMapper bookMapper;
-
     @MutationMapping("addBook")
     public Book addBook(@Argument BookInput bookInput) {
-
-        Book book = bookMapper.bookInputToBook(bookInput);
-        return bookService.addBook(book);
+        return bookService.addBook(bookInput);
     }
 
     @QueryMapping("allBooks")
@@ -37,5 +32,15 @@ public class BookController {
     @QueryMapping("getBookById")
     public Book getBookById(@Argument int bookId) {
         return bookService.getBookById(bookId);
+    }
+
+    @MutationMapping("editBook")
+    public Book editBook(@Argument int bookId, @Argument BookInput bookInput) {
+        return bookService.updateBook(bookId, bookInput);
+    }
+
+    @MutationMapping("removeBook")
+    public String removeBook(@Argument int bookId) {
+        return bookService.deleteBook(bookId);
     }
 }

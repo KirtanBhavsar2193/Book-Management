@@ -15,4 +15,6 @@ public interface BookMapper {
     @Mapping(target = "bookDescription", source = "bookDescription")
     @Mapping(target = "pages", source = "pages")
     Book bookInputToBook(BookInput bookInput);
+
+//    void updateBookFromBookInput(BookInput bookInput, Book book);
 }
