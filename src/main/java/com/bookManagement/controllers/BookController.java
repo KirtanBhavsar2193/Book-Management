@@ -1,6 +1,5 @@
 package com.bookManagement.controllers;
 
-import com.bookManagement.mappers.BookMapper;
 import com.bookManagement.models.entities.Book;
 import com.bookManagement.models.BookInput;
 import com.bookManagement.services.BookService;
